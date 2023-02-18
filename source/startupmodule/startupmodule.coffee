@@ -10,8 +10,8 @@ import {createLogFunctions} from "thingy-debug"
 import c from 'chalk'
 
 ##############################################################################
-import * as mp from "./mainprocessmodule.js"
-import * as ca from "./cliargumentsmodule.js"
+import * as main from "./mainprocessmodule.js"
+import * as argsModule from "./cliargumentsmodule.js"
 
 #endregion
 
@@ -26,11 +26,11 @@ successLog = (arg) -> console.log(c.green(arg))
 export cliStartup = ->
     log "cliStartup"
     try
-        e = ca.extractArguments()
-        await mp.execute(e)
-        printSuccess('All done!');
+        e = argsModule.extractArguments()
+        await main.execute(e)
+        successLog('All done!');
     catch err
-        printError("Error!")
-        printError(err)
-        if err.stack then printError(err.stack)
+        errLog("Error!")
+        errLog(err)
+        if err.stack then errLog(err.stack)
         process.exit(-1)

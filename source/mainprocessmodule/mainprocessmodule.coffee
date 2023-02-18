@@ -7,8 +7,12 @@ import {createLogFunctions} from "thingy-debug"
 
 ##############################################################################
 import * as cfg from "configmodule.js"
+import * as pathHandler from "./pathhandlermodule.js"
 
 ##############################################################################
-export execute = () ->
+export execute = (e) ->
     log "execute"
+    pathHandler.digestInputArgument(e.input)
+    pathHandler.digestOutputArgument(e.output)
+
     return
