@@ -22,7 +22,8 @@
   "homepage": "https://",
   "dependencies": {
     "chalk": "^4.1.2",
-    "meow": "^10.1.2"
+    "meow": "^10.1.2",
+    "mustache": "^4.2.0"
   },
   "type": "module"
 }

@@ -33,10 +33,44 @@ export digestInputArgument = (input) ->
 ############################################################
 export digestOutputArgument = (output) ->
     log "digestOutputArgument"
+    if pathModule.isAbsolute(output) then outputAbsolute = output
+    else outputAbsolute = pathModule.resolve(process.cwd(), output)
     
+    if isDirectory(outputAbsolute)
+        outputs = mapSourcesToOutputDirectory(outputAbsolute)
+    else if sources.length != 1
+        throw new Error("Single output file specified - but source is not 1 file!")
+    else 
+        outputs = [ sourceToOutputPath(sources[0], outputAbsolute) ]
+    
+    olog { outputs }
     return
 
+export getInputOutputPairs = ->
+    log "getInputOutputPairs"
+    result = []
+    for source,i in sources
+        input = source
+        output = outputs[i]
+        pair = { input, output }
+        result.push(pair)
+    return result
 
+############################################################
+#region internal functions
+
+mapSourcesToOutputDirectory = (outputDirectoryAbsolute) ->
+    result = []
+    for sourceAbsolute in sources
+        result.push(sourceToOutputPath(sourceAbsolute, outputDirectoryAbsolute))
+    return result
+
+sourceToOutputPath = (sourceAbsolute, outputDirectoryAbsolute) ->
+    log "defaultOutputForSource"
+    name = pathModule.basename(sourceAbsolute)
+    if name.endsWith(sourceFileEnding) 
+        name = name.replace(sourceFileEnding, ".js")
+    return pathModule.resolve(outputDirectoryAbsolute, name)
 
 ############################################################
 findRelevantFiles = (path) ->
@@ -70,3 +104,5 @@ isFile = (path) ->
     catch err
         ## probably does not exist
         return false
+
+#endregion
