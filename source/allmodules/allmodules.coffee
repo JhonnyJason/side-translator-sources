@@ -1,9 +1,9 @@
-import * as cliargumentsmodule from "./cliargumentsmodule"
-import * as configmodule from "./configmodule"
-import * as debugmodule from "./debugmodule"
-import * as mainprocessmodule from "./mainprocessmodule"
-import * as pathhandlermodule from "./pathhandlermodule"
-import * as startupmodule from "./startupmodule"
+import * as cliargumentsmodule from "./cliargumentsmodule.js"
+import * as configmodule from "./configmodule.js"
+import * as debugmodule from "./debugmodule.js"
+import * as mainprocessmodule from "./mainprocessmodule.js"
+import * as pathhandlermodule from "./pathhandlermodule.js"
+import * as startupmodule from "./startupmodule.js"
 
 Modules = {
     cliargumentsmodule,

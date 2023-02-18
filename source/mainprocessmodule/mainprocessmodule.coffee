@@ -6,7 +6,7 @@ import {createLogFunctions} from "thingy-debug"
 #endregion
 
 ##############################################################################
-import * as cfg from "configmodule.js"
+import * as cfg from "./configmodule.js"
 import * as pathHandler from "./pathhandlermodule.js"
 
 ##############################################################################
