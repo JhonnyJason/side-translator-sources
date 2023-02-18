@@ -44,7 +44,7 @@ findRelevantFiles = (path) ->
     allEntries = fs.readdirSync(path)
     allRelevant = []
     for entry in allEntries 
-        entryAbsolute = path.resolve(path, entry)
+        entryAbsolute = pathModule.resolve(path, entry)
         if isRelevantFile(entryAbsolute) then allRelevant.push(entryAbsolute)
     return allRelevant
 
@@ -57,16 +57,16 @@ isRelevantFile = (path) ->
 ############################################################
 isDirectory = (path) ->
     try
-        stat = fs.statSync(filepath)
-        return stat.isFile()
+        stat = fs.statSync(path)
+        return stat.isDirectory()
     catch err
         ## probably does not exist
         return false
 
 isFile = (path) ->
     try
-        stat = fs.statSync(filepath)
-        return stat.isDirectory()
+        stat = fs.statSync(path)
+        return stat.isFile()
     catch err
         ## probably does not exist
         return false
