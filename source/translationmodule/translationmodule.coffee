@@ -22,7 +22,7 @@ outputTemplate = '''
     export const testName = '{{{testName}}}';
 
     export async function run (browserUtils, resultUtils) {
-        
+
         const { browser, By, Key } = browserUtils
         const { chai, transitionTime, takeScreenshot } = resultUtils
 
@@ -37,6 +37,7 @@ outputTemplate = '''
         await transitionTime()
         await takeScreenshot({{stepNumber}})
         //step{{stepNumber}} assertions?
+        
         {{/testSteps}}
 
     };
