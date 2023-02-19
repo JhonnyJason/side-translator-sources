@@ -7,5 +7,7 @@ addModulesToDebug({
     # configmodule: true
     mainprocessmodule: true
     pathhandlermodule: true
+    translationmodule: true
+    
     # startupmodule: true
 })
